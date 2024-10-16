@@ -1,10 +1,7 @@
 const fastify = require('fastify')({
   logger: true,
 });
-fastify.get('/', async (request, response) => {
-  return { hello: 'world' };
-});
-
+fastify.register(require('./app'));
 fastify.listen({ port: 3000 }, (err) => {
   if (err) {
     fastify.log.error(err);
