@@ -4,7 +4,7 @@ class SubmissionRepository {
     this.submissionModel = Submission;
   }
   async addSubmission(submission) {
-    const newSubmission = new this.submissionModel.create(submission);
+    const newSubmission = await this.submissionModel.create(submission);
     return newSubmission;
   }
 }
