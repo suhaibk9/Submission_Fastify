@@ -13,7 +13,3 @@ async function submissionRoutes(fastify, options) {
   );
 }
 module.exports = submissionRoutes;
-
-/**
-
- */
