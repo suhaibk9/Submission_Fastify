@@ -7,6 +7,14 @@ class SubmissionRepository {
     const newSubmission = await this.submissionModel.create(submission);
     return newSubmission;
   }
+  async updateStatus(submissionId, status) {
+    const updatedSubmission = await this.submissionModel.findByIdAndUpdate(
+      submissionId,
+      { status },
+      { new: true }
+    );
+    return updatedSubmission;
+  }
 }
 
 module.exports = SubmissionRepository;

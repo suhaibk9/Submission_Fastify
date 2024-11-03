@@ -37,15 +37,27 @@ class SubmissionService {
       code: submission.code,
       problemId: submission.problemId,
       userId: submission.userId,
+      submissionId: submission_repo._id,
       language: submission.language,
-      inputCase: problemDetails.data.testCases[0].input,
-      outputCase: problemDetails.data.testCases[0].output,
+      testCases: problemDetails.data.testCases.map(({ input, output }) => ({
+        input,
+        output,
+      })),
     });
+    console.log('Adding to Queue', addingToQueue);
     return {
       message: 'Submission has been added to the queue',
       queueResponse: addingToQueue,
       submission: submission_repo,
     };
+  }
+  async updateStatus(submissionId, status) {
+    const updatedSubmission = await this.submissionRepository.updateStatus(
+      submissionId,
+      status
+    );
+    
+    return updatedSubmission;
   }
 }
 module.exports = SubmissionService;
